@@ -3,50 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ-TRAC: Legacy Edition</title>
+    <title>EZ-TRAC Legacy Edition</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-        .container { text-align: center; width: 100%; max-width: 450px; padding: 30px; }
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .container { text-align: center; width: 100%; max-width: 450px; padding: 20px; }
         
-        /* Matching the Airgas/Honeywell Branding from your video */
-        .logo { width: 200px; margin-bottom: 20px; }
-        .status-text { color: #555; font-size: 15px; font-weight: 500; margin-top: 40px; height: 24px; font-family: monospace; }
-        
-        /* The Spinner from the CT47 Interface */
-        .spinner { margin: 30px auto; width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
+        /* Loading Styles Matched to Demo Video */
+        .logo { width: 280px; margin-bottom: 20px; }
+        .status-text { color: #555; font-size: 15px; margin-top: 50px; height: 24px; font-weight: 500; }
+        .spinner { margin: 30px auto; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* The Final Plaque Reveal */
-        #tribute-card { display: none; text-align: center; animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .card-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid #00768a; }
-        .congrats-header { color: #004b5a; font-size: 26px; font-weight: bold; margin-bottom: 10px; }
-        .tag { color: #00768a; font-weight: bold; letter-spacing: 2px; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 20px; }
-        p { color: #444; line-height: 1.6; font-size: 17px; }
+        /* The Tribute Reveal */
+        #tribute-card { display: none; animation: fadeIn 1.2s ease-in-out; }
+        .card-box { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid #00768a; }
+        .congrats-header { color: #00768a; font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+        .legacy-tag { color: #004b5a; font-weight: bold; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 1.5px solid #004b5a; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 25px; }
+        p { color: #333; line-height: 1.7; font-size: 18px; }
         
-        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div id="loading-screen">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Airgas_logo.svg/1200px-Airgas_logo.svg.png" class="logo" alt="Airgas Logo">
+            <img src="logo.png" class="logo" alt="Airgas">
+            <div class="status-text" id="status">Scanning for retirement status...</div>
             <div class="spinner"></div>
-            <div class="status-text" id="status">Scanning EZ-TRAC Core...</div>
         </div>
 
         <div id="tribute-card">
             <div class="card-box">
-                <span class="tag">Founder Edition Access</span>
-                <div class="congrats-header">Legacy Confirmed</div>
+                <span class="legacy-tag">Founder Edition Confirmed</span>
+                <div class="congrats-header">Legacy Status: Legend</div>
                 <p>
-                    From the first line of code to the impact <strong>EZ-TRAC</strong> has today, your vision built this foundation.
+                    <strong>Bob</strong>, your vision for <strong>EZ-TRAC</strong> changed the way we all work.
                 </p>
-                <p style="font-style: italic; color: #666; font-size: 15px; margin-top: 25px;">
-                    Thank you for your leadership and mentorship. We hope your retirement is as legendary as your career.
+                <p style="font-size: 16px; color: #666; margin-top: 20px;">
+                    Thank you for the foundation you built and the leadership you shared. We are honored to carry your project forward.
                 </p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
-                <p style="font-weight: bold; color: #00768a;">Happy Retirement!</p>
+                <p style="margin-top: 35px; font-weight: bold; color: #00768a; font-size: 20px;">Enjoy every minute of it!</p>
             </div>
         </div>
     </div>
@@ -54,14 +51,14 @@
     <script>
         const status = document.getElementById('status');
         
-        // Retirement-themed technical messages
+        // Custom messages mixing retirement with app terminology
         const stages = [
-            "Syncing Legacy Data...",
-            "Archiving 'Monday Morning' Meetings...",
-            "Disabling Out-of-Office Alerts...",
-            "Checking Golf Course Availability...",
-            "Optimizing Unlimited PTO...",
-            "Welcome Home, Bob Miller."
+            "Initializing 'No Alarm Clock' protocol...",
+            "Disabling morning stand-ups...",
+            "Redirecting EZ-TRAC alerts to 'Someone Else'...",
+            "Checking golf course consolidations...",
+            "Verifying 40+ years of excellence...",
+            "Access Granted. Welcome home, Bob."
         ];
 
         let stageIdx = 0;
@@ -69,7 +66,7 @@
             if (stageIdx < stages.length) {
                 status.innerText = stages[stageIdx];
                 stageIdx++;
-                setTimeout(updateStatus, 1300); 
+                setTimeout(updateStatus, 1500); 
             } else {
                 showTribute();
             }
