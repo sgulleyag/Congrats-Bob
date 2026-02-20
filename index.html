@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EZ-TRAC Legacy Edition</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        body { margin: 0; font-family: sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .container { text-align: center; width: 100%; max-width: 450px; padding: 20px; }
-        .logo { width: 280px; margin-bottom: 20px; cursor: pointer; }
-        .status-text { color: #555; font-size: 16px; margin-top: 40px; font-weight: bold; font-family: monospace; min-height: 24px; }
+        .logo { width: 280px; margin-bottom: 20px; }
+        .status-text { color: #555; font-size: 16px; margin-top: 40px; font-weight: bold; font-family: monospace; height: 24px; }
         .spinner { margin: 30px auto; width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         #tribute-card { display: none; text-align: center; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid #00768a; }
@@ -16,11 +16,11 @@
 </head>
 <body>
 
-    <div class="container" id="main-content">
+    <div class="container">
         <div id="loading-screen">
-            <img src="logo.png" class="logo" alt="Airgas" onclick="runSequence()">
+            <img src="logo.png" class="logo" alt="Airgas">
             <div class="spinner"></div>
-            <div id="status" class="status-text">Initializing...</div>
+            <div id="status" class="status-text">Scanning EZ-TRAC Core...</div>
         </div>
 
         <div id="tribute-card">
@@ -32,39 +32,31 @@
     </div>
 
     <script>
-        const stages = [
+        // Directly execute without waiting for 'load' events
+        var stages = [
             "Checking for retirement mode...",
             "Declining all meeting invites...",
             "Forwarding EZ-TRAC alerts...",
             "Optimizing Unlimited PTO...",
             "Welcome Home, Bob Miller"
         ];
+        var i = 0;
 
-        let i = 0;
-        let running = false;
-
-        function runSequence() {
-            if (running) return; // Prevent double-starting
-            running = true;
-            
-            const statusText = document.getElementById("status");
-            
-            function updateStage() {
-                if (i < stages.length) {
-                    statusText.innerText = stages[i];
-                    i++;
-                    setTimeout(updateStage, 1800); 
-                } else {
-                    document.getElementById("loading-screen").style.display = "none";
-                    document.getElementById("tribute-card").style.display = "block";
-                    document.body.style.background = "#f4f7f8";
-                }
+        function update() {
+            var el = document.getElementById("status");
+            if (i < stages.length) {
+                el.innerHTML = stages[i];
+                i++;
+                setTimeout(update, 1800);
+            } else {
+                document.getElementById("loading-screen").style.display = "none";
+                document.getElementById("tribute-card").style.display = "block";
+                document.body.style.background = "#f4f7f8";
             }
-            updateStage();
         }
 
-        // Auto-start when page is ready
-        window.onload = runSequence;
+        // Delay start by 1 second to ensure the DOM is ready
+        setTimeout(update, 1000);
     </script>
 </body>
 </html>
