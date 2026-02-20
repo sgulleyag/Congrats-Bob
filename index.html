@@ -7,7 +7,7 @@
     <style>
         body { margin: 0; font-family: sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
         .container { text-align: center; width: 100%; max-width: 450px; padding: 20px; }
-        .logo { width: 280px; margin-bottom: 20px; }
+        .logo { width: 280px; margin-bottom: 20px; cursor: pointer; }
         .status-text { color: #555; font-size: 16px; margin-top: 40px; font-weight: bold; font-family: monospace; min-height: 24px; }
         .spinner { margin: 30px auto; width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -18,15 +18,15 @@
 
     <div class="container" id="main-content">
         <div id="loading-screen">
-            <img src="logo.png" class="logo" alt="Airgas">
+            <img src="logo.png" class="logo" alt="Airgas" onclick="runSequence()">
             <div class="spinner"></div>
-            <div id="status">Initializing...</div>
+            <div id="status" class="status-text">Initializing...</div>
         </div>
 
         <div id="tribute-card">
             <h1 style="color: #00768a;">Legacy Confirmed</h1>
             <p style="font-size: 18px;"><strong>Bob Miller</strong>, your vision for EZ-TRAC built the foundation we stand on today.</p>
-            <p>Thank you for your leadership and years of dedication</p>
+            <p>Thank you for your leadership and years of dedication.</p>
             <h2 style="color: #00768a;">Happy Retirement!</h2>
         </div>
     </div>
@@ -35,28 +35,36 @@
         const stages = [
             "Checking for retirement mode...",
             "Declining all meeting invites...",
-            "Forwarding EZ-TRAC alerts",
+            "Forwarding EZ-TRAC alerts...",
             "Optimizing Unlimited PTO...",
-            "Welcome Home, Bob Miller."
+            "Welcome Home, Bob Miller"
         ];
 
         let i = 0;
-        const statusText = document.getElementById("status");
+        let running = false;
 
         function runSequence() {
-            if (i < stages.length) {
-                statusText.innerText = stages[i];
-                i++;
-                setTimeout(runSequence, 1800); 
-            } else {
-                document.getElementById("loading-screen").style.display = "none";
-                document.getElementById("tribute-card").style.display = "block";
-                document.body.style.background = "#f4f7f8";
+            if (running) return; // Prevent double-starting
+            running = true;
+            
+            const statusText = document.getElementById("status");
+            
+            function updateStage() {
+                if (i < stages.length) {
+                    statusText.innerText = stages[i];
+                    i++;
+                    setTimeout(updateStage, 1800); 
+                } else {
+                    document.getElementById("loading-screen").style.display = "none";
+                    document.getElementById("tribute-card").style.display = "block";
+                    document.body.style.background = "#f4f7f8";
+                }
             }
+            updateStage();
         }
 
-        // Trigger the sequence immediately when the page finishes loading
-        window.addEventListener('load', runSequence);
+        // Auto-start when page is ready
+        window.onload = runSequence;
     </script>
 </body>
 </html>
