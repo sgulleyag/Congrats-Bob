@@ -8,9 +8,9 @@
         body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
         .container { text-align: center; width: 100%; max-width: 450px; padding: 20px; }
         
-        /* Loading Styles Matched to Demo Video */
+        /* Matched to Airgas Logo and Video Spinner */
         .logo { width: 280px; margin-bottom: 20px; }
-        .status-text { color: #555; font-size: 15px; margin-top: 50px; height: 24px; font-weight: 500; }
+        .status-text { color: #555; font-size: 15px; margin-top: 50px; height: 24px; font-weight: 500; font-family: monospace; }
         .spinner { margin: 30px auto; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -18,7 +18,6 @@
         #tribute-card { display: none; animation: fadeIn 1.2s ease-in-out; }
         .card-box { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid #00768a; }
         .congrats-header { color: #00768a; font-size: 28px; font-weight: bold; margin-bottom: 10px; }
-        .legacy-tag { color: #004b5a; font-weight: bold; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 1.5px solid #004b5a; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 25px; }
         p { color: #333; line-height: 1.7; font-size: 18px; }
         
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -29,56 +28,55 @@
     <div class="container">
         <div id="loading-screen">
             <img src="logo.png" class="logo" alt="Airgas">
-            <div class="status-text" id="status">Scanning for retirement status...</div>
+            <div id="status" class="status-text">Scanning for retirement status...</div>
             <div class="spinner"></div>
         </div>
 
         <div id="tribute-card">
             <div class="card-box">
-                <span class="legacy-tag">Founder Edition Confirmed</span>
-                <div class="congrats-header">Legacy Status: Legend</div>
+                <div class="congrats-header">Legacy Confirmed</div>
                 <p>
-                    <strong>Bob</strong>, your vision for <strong>EZ-TRAC</strong> changed the way we all work.
+                    <strong>Bob Miller</strong>, your vision for <strong>EZ-TRAC</strong> built the foundation we stand on today.
                 </p>
                 <p style="font-size: 16px; color: #666; margin-top: 20px;">
-                    Thank you for the foundation you built and the leadership you shared. We are honored to carry your project forward.
+                    Thank you for your leadership and mentorship. We are honored to carry your project forward.
                 </p>
-                <p style="margin-top: 35px; font-weight: bold; color: #00768a; font-size: 20px;">Enjoy every minute of it!</p>
+                <p style="margin-top: 35px; font-weight: bold; color: #00768a; font-size: 20px;">Happy Retirement!</p>
             </div>
         </div>
     </div>
 
     <script>
-        const status = document.getElementById('status');
+        const statusElement = document.getElementById('status');
         
-        // Custom messages mixing retirement with app terminology
+        // Custom messages mixing retirement with real app terminology from video
         const stages = [
-            "Initializing 'No Alarm Clock' protocol...",
-            "Disabling meeting invites...",
+            "Checking for retirement mode...",
+            "Looking for new material consolidations...",
+            "Disabling morning stand-ups...",
             "Redirecting EZ-TRAC alerts to 'Someone Else'...",
-            "Verifying 40+ years of excellence..."
-			"Activating retirement protocol...",
+            "Verifying 40+ years of excellence...",
             "Access Granted. Welcome home, Bob."
         ];
 
         let stageIdx = 0;
-        const updateStatus = () => {
-            if (stageIdx < stages.length) {
-                status.innerText = stages[stageIdx];
-                stageIdx++;
-                setTimeout(updateStatus, 1500); 
-            } else {
-                showTribute();
-            }
-        };
 
-        function showTribute() {
-            document.getElementById('loading-screen').style.display = 'none';
-            document.getElementById('tribute-card').style.display = 'block';
-            document.body.style.background = "#f4f7f8"; 
+        function updateProgress() {
+            if (stageIdx < stages.length) {
+                statusElement.innerText = stages[stageIdx];
+                stageIdx++;
+                setTimeout(updateProgress, 1600); // 1.6 seconds per message
+            } else {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('tribute-card').style.display = 'block';
+                document.body.style.background = "#f4f7f8"; 
+            }
         }
 
-        setTimeout(updateStatus, 1000);
+        // Start the sequence after a 1-second delay
+        window.onload = () => {
+            setTimeout(updateProgress, 1000);
+        };
     </script>
 </body>
 </html>
