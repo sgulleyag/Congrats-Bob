@@ -11,7 +11,15 @@
         .status-text { color: #555; font-size: 16px; margin-top: 40px; font-weight: bold; font-family: monospace; }
         .spinner { margin: 30px auto; width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #tribute-card { display: none; text-align: center; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid #00768a; }
+        
+        /* Final Card Styling */
+        #tribute-card { display: none; text-align: center; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid #00768a; }
+        
+        /* Matched Large Font Sizes */
+        .primary-header { color: #00768a; font-size: 26px; margin: 0; font-weight: bold; }
+        
+        /* Matched Smaller Middle Font Sizes */
+        .tribute-text { font-size: 16px; color: #333; line-height: 1.6; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -21,28 +29,35 @@
             <div class="spinner"></div>
             <div id="status" class="status-text">Verifying Retirement Status...</div>
         </div>
+
         <div id="tribute-card">
-            <h1 style="color: #00768a;">Legacy Confirmed</h1>
-            <p style="font-size: 18px;"><strong>Bob Miller</strong>, your vision for EZ-TRAC built the foundation we stand on today.</p>
-            <p>Thank you for years of leadership,dedication, and friendship!</p>
-            <h2 style="color: #00768a;">Happy Retirement!</h2>
+            <h1 class="primary-header">Legacy Confirmed</h1>
+            
+            <div class="tribute-text">
+                <p><strong>Bob Miller</strong>, your vision for EZ-TRAC built the foundation we stand on today.</p>
+                <p>Thank you for your leadership and years of dedication.</p>
+            </div>
+            
+            <h1 class="primary-header">Happy Retirement!</h1>
         </div>
     </div>
+
     <script>
         var stages = [
-            "Loading the not my problem database...",
+            "Checking for retirement mode...",
             "Declining all meeting invites...",
             "Forwarding EZ-TRAC alerts...",
-            "Optimizing unlimited PTO...",
+            "Optimizing Unlimited PTO...",
             "Welcome Home, Bob Miller"
         ];
         var i = 0;
+
         function update() {
             var el = document.getElementById("status");
             if (i < stages.length) {
                 el.innerHTML = stages[i];
                 i++;
-                // Each subsequent message shows for 3 seconds
+                // 3-second delay for each stage
                 setTimeout(update, 3000); 
             } else {
                 document.getElementById("loading-screen").style.display = "none";
@@ -50,9 +65,9 @@
                 document.body.style.background = "#f4f7f8";
             }
         }
-        // First wait 3 seconds before moving from "Scanning..." to the first stage
+
+        // Initial 3-second delay for "Scanning EZ-TRAC Core..."
         setTimeout(update, 3000);
     </script>
 </body>
 </html>
-
