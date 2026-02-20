@@ -42,6 +42,7 @@
             if (i < stages.length) {
                 el.innerHTML = stages[i];
                 i++;
+                // Each subsequent message shows for 3 seconds
                 setTimeout(update, 3000); 
             } else {
                 document.getElementById("loading-screen").style.display = "none";
@@ -49,7 +50,8 @@
                 document.body.style.background = "#f4f7f8";
             }
         }
-        setTimeout(update, 1000);
+        // First wait 3 seconds before moving from "Scanning..." to the first stage
+        setTimeout(update, 3000);
     </script>
 </body>
 </html>
