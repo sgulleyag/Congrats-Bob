@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZ-TRAC: Legacy Edition</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .container { text-align: center; width: 100%; max-width: 450px; padding: 30px; }
+        
+        /* Matching the Airgas/Honeywell Branding from your video */
+        .logo { width: 200px; margin-bottom: 20px; }
+        .status-text { color: #555; font-size: 15px; font-weight: 500; margin-top: 40px; height: 24px; font-family: monospace; }
+        
+        /* The Spinner from the CT47 Interface */
+        .spinner { margin: 30px auto; width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* The Final Plaque Reveal */
+        #tribute-card { display: none; text-align: center; animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid #00768a; }
+        .congrats-header { color: #004b5a; font-size: 26px; font-weight: bold; margin-bottom: 10px; }
+        .tag { color: #00768a; font-weight: bold; letter-spacing: 2px; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 20px; }
+        p { color: #444; line-height: 1.6; font-size: 17px; }
+        
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="loading-screen">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Airgas_logo.svg/1200px-Airgas_logo.svg.png" class="logo" alt="Airgas Logo">
+            <div class="spinner"></div>
+            <div class="status-text" id="status">Scanning EZ-TRAC Core...</div>
+        </div>
+
+        <div id="tribute-card">
+            <div class="card-box">
+                <span class="tag">Founder Edition Access</span>
+                <div class="congrats-header">Legacy Confirmed</div>
+                <p>
+                    From the first line of code to the impact <strong>EZ-TRAC</strong> has today, your vision built this foundation.
+                </p>
+                <p style="font-style: italic; color: #666; font-size: 15px; margin-top: 25px;">
+                    Thank you for your leadership and mentorship. We hope your retirement is as legendary as your career.
+                </p>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+                <p style="font-weight: bold; color: #00768a;">Happy Retirement!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const status = document.getElementById('status');
+        
+        // Retirement-themed technical messages
+        const stages = [
+            "Syncing Legacy Data...",
+            "Archiving 'Monday Morning' Meetings...",
+            "Disabling Out-of-Office Alerts...",
+            "Checking Golf Course Availability...",
+            "Optimizing Unlimited PTO...",
+            "Welcome Home, Bob Miller."
+        ];
+
+        let stageIdx = 0;
+        const updateStatus = () => {
+            if (stageIdx < stages.length) {
+                status.innerText = stages[stageIdx];
+                stageIdx++;
+                setTimeout(updateStatus, 1300); 
+            } else {
+                showTribute();
+            }
+        };
+
+        function showTribute() {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('tribute-card').style.display = 'block';
+            document.body.style.background = "#f4f7f8"; 
+        }
+
+        setTimeout(updateStatus, 1000);
+    </script>
+</body>
+</html>
