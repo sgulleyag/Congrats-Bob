@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ-TRAC Legacy Edition</title>
-    <style>
-        body { margin: 0; font-family: sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .container { text-align: center; width: 100%; max-width: 450px; padding: 20px; }
-        .logo { width: 280px; margin-bottom: 20px; }
-        .status-text { color: #555; font-size: 16px; margin-top: 40px; font-weight: bold; font-family: monospace; height: 24px; }
-        .spinner { margin: 30px auto; width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid #00768a; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #tribute-card { display: none; text-align: center; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid #00768a; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div id="loading-screen">
-            <img src="logo.png" class="logo" alt="Airgas">
-            <div class="spinner"></div>
-            <div id="status" class="status-text">Scanning EZ-TRAC Core...</div>
-        </div>
-
-        <div id="tribute-card">
-            <h1 style="color: #00768a;">Legacy Confirmed</h1>
-            <p style="font-size: 18px;"><strong>Bob Miller</strong>, your vision for EZ-TRAC built the foundation we stand on today.</p>
-            <p>Thank you for your leadership and years of dedication.</p>
-            <h2 style="color: #00768a;">Happy Retirement!</h2>
-        </div>
-    </div>
-
-    <script>
-        // Directly execute without waiting for 'load' events
+<script>
+        // Directly execute the sequence
         var stages = [
             "Checking for retirement mode...",
             "Declining all meeting invites...",
@@ -47,7 +14,8 @@
             if (i < stages.length) {
                 el.innerHTML = stages[i];
                 i++;
-                setTimeout(update, 1800);
+                // Changed from 1800 to 3000 (3 seconds)
+                setTimeout(update, 3000); 
             } else {
                 document.getElementById("loading-screen").style.display = "none";
                 document.getElementById("tribute-card").style.display = "block";
@@ -55,8 +23,6 @@
             }
         }
 
-        // Delay start by 1 second to ensure the DOM is ready
-        setTimeout(update, 1000);
+        // Delay the very first message start by 1.5 seconds so they see "Scanning..."
+        setTimeout(update, 1500);
     </script>
-</body>
-</html>
